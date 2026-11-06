@@ -1,32 +1,34 @@
-# Pixel Sword RPG — Alpha 0.1
+# Emberwood: Moon Shrine — Pixel Sword RPG
 
-Game **2D pixel-art Action RPG top-down** được xây bằng **Godot 4.7 (Compatibility renderer)**, ưu tiên thử trên Android qua trình duyệt.
+A short, complete-loop **2D top-down action RPG** for **Godot 4.7.2**.
 
-## Tính năng đã có trong mã nguồn
-- Player di chuyển **4 hướng** (không đi chéo).
-- Nhìn theo hướng di chuyển; dùng kiếm đánh 1 nhát theo hướng nhìn.
-- Mục tiêu luyện tập có 30 HP, mỗi nhát gây 10 sát thương.
-- Nút cảm ứng 4 hướng và Attack dành cho điện thoại.
-- Dùng bàn phím WASD / mũi tên, J / Space khi thử trên máy tính.
+## Play on GitHub Pages
 
-## Mở bằng Godot 4.7
-1. Clone hoặc Download ZIP repo này.
-2. Trong Godot 4.7, chọn **Import** và mở `project.godot`.
-3. Chạy scene chính để thử nhân vật.
-4. Đi tới mục tiêu màu xanh rồi chém 3 lần.
+https://namh38873-code.github.io/pixel-sword-rpg-/
 
-## Trạng thái triển khai web
-Repo hiện có **mã nguồn Godot**, chưa có các file Web export (`index.html`, `.js`, `.wasm`, `.pck`).
-Vì vậy **GitHub Pages chưa thể chạy game trực tiếp**. Chưa triển khai APK.
+Build: .github/workflows/web-pages.yml (Godot 4.7.2, HTML5 single-threaded).
 
-Để triển khai bằng GitHub Pages không dùng workflow: trong Godot 4.7, cài Web export template tương ứng, chọn **Export > Web**, xuất thành `index.html`, bảo đảm xuất **single-threaded**, rồi đưa toàn bộ file export vào một thư mục phục vụ GitHub Pages. Godot 4.7 phải có web export templates tương thích.
+## How to play
 
-## Cấu trúc
-- `project.godot`: cấu hình Godot 4.7, Compatibility renderer.
-- `scenes/main.tscn`: map thử, mục tiêu, nút cảm ứng.
-- `scenes/player.tscn`: CharacterBody2D, hitbox kiếm, camera.
-- `scripts/player.gd`: logic di chuyển và chém.
-- `scripts/dummy.gd`: logic HP mục tiêu.
-- `assets/`: sprite PNG pixel-art.
+- **On Android:** d-pad left side, ATK + DASH + potion buttons right side.
+- **On desktop:** WASD / arrow keys to move; **J / Space** attack; **K / Shift** dash; **H / E** drink.
+- **Quest:** Defeat 8 wandering slimes. Then follow the golden trail to the **Moon Shrine** to battle the guardian.
+- **Rewards:** Each slime gives XP. Level up to increase damage and max HP; find healing potions along the trail.
+- **Complete game loop:** win screen after the guardian falls; retry after winning or losing.
 
-> Alpha thử nghiệm: chưa có AI quái, né đòn, animation nhiều frame, túi đồ hay save.
+## Art direction
+
+The world, cabin, ancient ruins, plants, rocks, stonework, hero and monsters are drawn using original GDScript pixel-style canvas primitives. No external art is redistributed. This intentionally makes the project self-contained and license-safe.
+
+## Source
+
+- `scripts/world.gd` - hand-crafted tile-based fantasy forest, road, obstacles and camp
+- `scripts/game.gd` - player, NPC enemy AI, sword combat, dash, XP, boss and win/lose states
+- `scripts/ui.gd` - mobile multi-touch UI, HUD, quest text
+- `scenes/main.tscn` - scene and camera
+- `export_presets.cfg` - Godot Web export
+- `.github/workflows/web-pages.yml` - build + deploy via Pages
+
+## Project scope
+
+This is a **small playable RPG** and not yet a production-complete commercial game. It lacks sound effects, animations from asset sheets, level selection, equipment and save slots.
