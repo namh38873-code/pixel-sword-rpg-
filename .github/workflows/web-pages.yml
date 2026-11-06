@@ -34,6 +34,15 @@ jobs:
       - name: Import Godot project
         run: godot --headless --editor --path . --import --quit
 
+      - name: Smoke-test game for Godot script errors
+        run: |
+          set -o pipefail
+          godot --headless --path . --quit-after 20 2>&1 | tee /tmp/game-smoke.log
+          if grep -E "SCRIPT ERROR|Parse Error|Invalid call|Invalid access|ERROR:" /tmp/game-smoke.log; then
+            echo "Game smoke test detected script/runtime errors"
+            exit 1
+          fi
+
       - name: Export single-threaded HTML5
         run: |
           mkdir -p web
